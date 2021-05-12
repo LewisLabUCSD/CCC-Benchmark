@@ -41,8 +41,9 @@ cellchat <- subsetData(cellchat) # subset the expression data of signaling genes
 
 cellchat <- identifyOverExpressedGenes(cellchat)
 cellchat <- identifyOverExpressedInteractions(cellchat)
+cellchat <- projectData(cellchat, PPI.human)
 
-cellchat <- computeCommunProb(cellchat, raw.use = TRUE) # Use TRUE if not using smooth genes
+cellchat <- computeCommunProb(cellchat, raw.use = FALSE) # Use TRUE if not using smooth genes
 cellchat <- computeCommunProbPathway(cellchat)
 cellchat <- aggregateNet(cellchat)
 

@@ -42,4 +42,6 @@ fi
 conda install -y -c conda-forge r-base r-devtools r-cairo r-systemfonts r-irkernel r-igraph umap-learn
 Rscript setup_cellchat_env.r
 conda install -y -c conda-forge r-rhpcblasctl=0.20_137
+pip install cell2cell
+conda deactivate
 echo "Complete, activate environment using: conda activate $NAME"

@@ -2,8 +2,8 @@
 #PBS -N Test-CellChat
 #PBS -m abe
 #PBS -M earmingol@eng.ucsd.edu
-#PBS -l pmem=32gb
-#PBS -l walltime=96:00:00
+#PBS -l pmem=16gb
+#PBS -l walltime=3:00:00
 #PBS -l nodes=1:ppn=1
 #PBS -j oe
 #PBS -o test_cellchat.out

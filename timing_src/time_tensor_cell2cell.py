@@ -12,7 +12,6 @@ tl.set_backend(tl.get_backend(), local_threadsafe=True)
 import pandas as pd
 import cell2cell as c2c
 from tqdm.auto import tqdm
-import os
 
 import sys
 

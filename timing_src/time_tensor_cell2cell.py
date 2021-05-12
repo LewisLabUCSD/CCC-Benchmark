@@ -1,6 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+cores = 1
+
+import os
+os.environ['OPENBLAS_NUM_THREADS'] = str(cores)
+os.environ['MKL_NUM_THREADS'] = str(cores)
+import tensorly as tl
+tl.set_backend(tl.get_backend(), local_threadsafe=True)
+
 import pandas as pd
 import cell2cell as c2c
 from tqdm.auto import tqdm

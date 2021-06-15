@@ -158,5 +158,3 @@ fig, axes = c2c.plotting.tensor_factors_plot(interaction_tensor=tensor,
 
 # **Export Loadings**
 tensor.export_factor_loadings(output_folder + '/COVID-19-Loadings.xlsx')
-
-print("--- %s seconds ---" % (time.time() - start_time))

@@ -11,7 +11,7 @@
 START_TIME=$(date +%s)
 
 echo "Starting the analysis"
-/home/earmingo/CCC-Benchmark/shell/tensor_cell2cell.sh
+/home/earmingo/CCC-Benchmark/balf_samples/shell/tensor_cell2cell.sh
 
 END_TIME=$(date +%s)
 RUN_TIME=$(($END_TIME-$START_TIME))

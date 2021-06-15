@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Root Directory
-ROOT="/home/earmingo/CCC-Benchmark/"
+ROOT="/home/earmingo/CCC-Benchmark/balf_samples/"
 
 # Output Directory
 OUTPUT=$ROOT$"/outputs/"
@@ -11,9 +11,9 @@ source ~/.bashrc
 conda activate cellchat
 
 # CellChat
-Rscript $ROOT$"/test/CellChat-Tutorial.r" \
+Rscript $ROOT$"/timing_src/time_cellchat_bycontext.r" \
  $ROOT \
- $OUTPUT &>> $OUTPUT$"/test_cellchat.out"
+ $OUTPUT &>> $OUTPUT$"/cellchat_context.out"
 
 # Stop environment
 conda deactivate

@@ -10,10 +10,10 @@ OUTPUT=$ROOT$"/outputs/"
 source ~/.bashrc
 conda activate cellchat
 
-# Tensor-cell2cell
-python $ROOT$"/timing_src/time_tensor_cell2cell.py" \
+# CellChat
+Rscript $ROOT$"/balf_samples/test/CellChat-Tutorial.r" \
  $ROOT \
- $OUTPUT &>> $OUTPUT$"/tensor_cell2cell.out"
+ $OUTPUT &>> $OUTPUT$"/test_cellchat.out"
 
 # Stop environment
 conda deactivate

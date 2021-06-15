@@ -40,8 +40,12 @@ fi
 
 # begin package installs
 conda install -y -c conda-forge r-base r-devtools r-cairo r-systemfonts r-irkernel r-igraph umap-learn
+#conda install -y -c bioconda bioconductor-biobase=2.50.0
+conda install -y -c conda-forge r-biocmanager=1.30.12
 Rscript setup_cellchat_env.r
-conda install -y -c conda-forge r-rhpcblasctl=0.20_137
-pip install 'cell2cell==0.4.7'
+conda install -y -c conda-forge r-rhpcblasctl=0.20_137 r-docopt=0.7.1
+conda install -y -c r r-stringr=1.4.0
+conda install -y -c bioconda bioconductor-rhdf5
+pip install 'cell2cell==0.4.9'
 conda deactivate
 echo "Complete, activate environment using: conda activate $NAME"

@@ -11,9 +11,9 @@ source ~/.bashrc
 conda activate cellchat
 
 # CellChat
-Rscript $ROOT$"/timing_src/time_cellchat_bycontext.r" \
+Rscript $ROOT$"/balf_samples/timing_src/time_cellchat_bysample.r" \
  $ROOT \
- $OUTPUT &>> $OUTPUT$"/cellchat_context.out"
+ $OUTPUT &>> $OUTPUT$"/cellchat_sample.out"
 
 # Stop environment
 conda deactivate

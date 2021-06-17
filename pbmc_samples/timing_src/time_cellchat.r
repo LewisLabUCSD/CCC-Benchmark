@@ -28,6 +28,7 @@ options(stringsAsFactors = FALSE)
 RhpcBLASctl::blas_set_num_threads(1) # no multithreading
 
 cell_grouper<-'majorType'
+type_ = 'functional'
 
 opts = docopt(doc)
 for (opt in c('number', 'group', 'seed')){
@@ -114,7 +115,11 @@ if (!group){
 # cell.types<-Reduce(intersect, lapply(sample.names, function(sn) unique(md.cell[md.cell$sampleID == sn, cell_grouper])))
 cell.types<-Reduce(intersect, lapply(counts, function(df) unique(md.cell[colnames(df), cell_grouper])))
 cell.ids<-rownames(md.cell[md.cell[[cell_grouper]] %in% cell.types, ])   
-counts<-lapply(setNames(counts, counts), function(df) df[colnames(df) %in% cell.ids,])                      
+# counts<-lapply(setNames(counts, counts), function(df) df[colnames(df) %in% cell.ids,])                      
+for (n in names(counts)){
+    df<-counts[[n]]
+    counts[[n]]<-df[,colnames(df) %in% cell.ids]
+}
 
 #' Rank the similarity of the shared signaling pathways based on their joint manifold learning
 #'
@@ -166,6 +171,7 @@ rankSimilarity_ <- function(object, slot.name = "netP", type = c("functional","s
 # create cellchat object for each sample or sample.name
 covid.list<-list()
 for (sample.name in names(counts)){
+    print(paste0("Creating CellChat object for sample: ", sample.name))
     # loop through each sample.name and create a cell type future
     expr<-CellChat::normalizeData(counts[[sample.name]])
     cellchat<-createCellChat(object = as(expr, "dgCMatrix"), meta = md.cell[colnames(expr),], 
@@ -188,15 +194,16 @@ for (sample.name in names(counts)){
 
 # merge and analyze
 cellchat <- mergeCellChat(covid.list, add.names = names(covid.list))
-cellchat <- computeNetSimilarityPairwise(cellchat, type = 'structural')
-cellchat <- netEmbedding(cellchat, type = 'structural')
-cellchat <- netClustering(cellchat, type = 'structural',  do.parallel = F, do.plot = F)
+cellchat <- computeNetSimilarityPairwise(cellchat, type = type_)
+cellchat <- netEmbedding(cellchat, type = type_)
+cellchat <- netClustering(cellchat, type = type_,  do.parallel = F, do.plot = F)
 # Manifold learning of the signaling networks for datasets 
 pairwise_comparisons<-sapply(as.data.frame(combn(seq(1:length(covid.list)),2)), 
                          function(x) as.numeric(x), simplify = F) # pairwise combination of elements
 
 for (pc in names(pairwise_comparisons)){
-    path.dist<-rankSimilarity_(cellchat, type = 'structural', comparison1 = 1:length(covid.list),
+    print(paste0("Performing pairwise comparison for: ", pc))
+    path.dist<-rankSimilarity_(cellchat, type = type_, comparison1 = 1:length(covid.list),
                                comparison2 = pairwise_comparisons[[pc]]) 
 }
 

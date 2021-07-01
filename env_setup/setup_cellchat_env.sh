@@ -46,6 +46,6 @@ Rscript setup_cellchat_env.r
 conda install -y -c conda-forge r-rhpcblasctl=0.20_137 r-docopt=0.7.1
 conda install -y -c r r-stringr=1.4.0
 conda install -y -c bioconda bioconductor-rhdf5
-pip install 'cell2cell==0.4.9'
+pip install 'cell2cell==0.5.1'
 conda deactivate
 echo "Complete, activate environment using: conda activate $NAME"

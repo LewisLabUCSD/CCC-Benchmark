@@ -41,7 +41,7 @@ number<-opts[['number']]
 group<-opts[['group']]
 seed<-opts[['seed']]
 input_path<-paste0(opts[['root']], "/data/PBMCs/")
-output_path<-opts[['outputs']]
+output_path<-paste0(opts[['outputs']], "/pbmc-outputs/")
 set.seed(seed)
 
 # Print info

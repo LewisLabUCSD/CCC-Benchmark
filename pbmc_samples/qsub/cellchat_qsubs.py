@@ -5,7 +5,7 @@ import subprocess
 ## INPUTS
 # Sample cases : [3, 6, 12, 24, 36, 48, 60]
 contexts = [False, True]
-samples = [3, 6, 12, 24, 48]
+samples = [3, 6, 12, 24, 36, 48, 60]
 benchmark_folder = '/home/earmingo/CCC-Benchmark/'
 
 count = 1
@@ -18,8 +18,8 @@ for context in contexts:
         context_input = '0'
     for sample in samples:
         qsub_command = 'qsub -N CellChat-{} '.format(count) \
-                       + '-o {}pbmc_samples/qsub/cellchat-{}-{}.out '.format(benchmark_folder, sample, suffix) \
-                       + '-e {}pbmc_samples/qsub/cellchat-{}-{}.err '.format(benchmark_folder, sample, suffix) \
+                       + '-o {}outputs/cellchat-{}-{}.out '.format(benchmark_folder, sample, suffix) \
+                       + '-e {}outputs/cellchat-{}-{}.err '.format(benchmark_folder, sample, suffix) \
                        + "-v folder='{}',samples='{}',context='{}' ".format(benchmark_folder, sample, context_input) \
                        + benchmark_folder + '/pbmc_samples/qsub/cellchat.q'
 

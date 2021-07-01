@@ -74,7 +74,7 @@ lr_pairs = pd.read_csv(data_folder + '/Human-2020-Jin-LR-pairs.csv')
 
 # Change complex annotations
 lr_pairs['ligand2'] = lr_pairs.interaction_name_2.apply(lambda x: x.split(' - ')[0].upper())
-lr_pairs['receptor2'] = lr_pairs.interaction_name_2.apply(lambda x: x.split(' - ')[1].upper()                                                        .replace('(', '').replace(')', '').replace('+', '&'))
+lr_pairs['receptor2'] = lr_pairs.interaction_name_2.apply(lambda x: x.split(' - ')[1].upper().replace('(', '').replace(')', '').replace('+', '&'))
 
 lr_pairs['c2c_interaction'] = lr_pairs.apply(lambda row: row['ligand2'] + '^' + row['receptor2'], axis=1)
 

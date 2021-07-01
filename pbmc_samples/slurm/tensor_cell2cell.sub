@@ -1,0 +1,24 @@
+#!/bin/bash
+#SBATCH --time 24:00:00 -p gpu --exclusive
+hostname
+lscpu
+date
+nvidia-smi
+
+export ACC_DEVICE_NUM=0
+export OMP_NUM_THREADS=1
+
+# Inputs
+ROOT=${folder} #"/home/earmingo/CCC-Benchmark/"
+NSAMPLES=${samples} #"12"
+CONTEXT=${context} #"TRUE"
+
+# Script
+START_TIME=$(date +%s)
+
+echo "Starting the analysis"
+taskset -c 0 time $ROOT$"/pbmc_samples/shell/tensor_cell2cell_gpu.sh" $ROOT $NSAMPLES $CONTEXT
+
+END_TIME=$(date +%s)
+RUN_TIME=$(($END_TIME-$START_TIME))
+echo $"Analysis completed in $RUN_TIME sec"

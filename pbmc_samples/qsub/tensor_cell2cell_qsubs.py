@@ -21,7 +21,7 @@ for context in contexts:
                        + '-o {}outputs/tensor_cell2cell-{}-{}.out '.format(benchmark_folder, sample, suffix) \
                        + '-e {}outputs/tensor_cell2cell-{}-{}.err '.format(benchmark_folder, sample, suffix) \
                        + "-v folder='{}',samples='{}',context='{}' ".format(benchmark_folder, sample, context_input) \
-                       + benchmark_folder + '/pbmc_samples/qsub/tensor_cell2cell.sub'
+                       + benchmark_folder + '/pbmc_samples/qsub/tensor_cell2cell.q'
 
         exit_status = subprocess.call(qsub_command, shell=True)
         if exit_status is 1:
